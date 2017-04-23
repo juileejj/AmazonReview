@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../DistinctCategory/DistinctCategory.iml" filepath="$PROJECT_DIR$/../DistinctCategory/DistinctCategory.iml" />
       <module fileurl="file://$PROJECT_DIR$/RatingPartition.iml" filepath="$PROJECT_DIR$/RatingPartition.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TopRatedProducts/TopRatedProducts.iml" filepath="$PROJECT_DIR$/../TopRatedProducts/TopRatedProducts.iml" />
     </modules>

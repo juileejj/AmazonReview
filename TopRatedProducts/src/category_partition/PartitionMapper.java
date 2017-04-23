@@ -17,11 +17,12 @@ public void map(Object key , Text value , Context context) throws IOException, I
     JsonMetadata metadata = gson.fromJson(value.toString(), JsonMetadata.class);
    /* System.out.println(reviewDetails);*/
     List<List<String>> categories = metadata.getCategories();
+  //  metadata.setCategories(null);
     for(List<String> list:categories)
     {
         for(String category:list)
         {
-            context.write(new Text(category), new Text(metadata.getAsin()));
+            context.write(new Text(category.trim()),new Text(metadata.getAsin()));
         }
     }
 

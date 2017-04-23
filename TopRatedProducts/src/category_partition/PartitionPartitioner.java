@@ -25,12 +25,11 @@ public class PartitionPartitioner extends Partitioner<Text,Text> implements Conf
 
     @Override
     public int getPartition(Text key, Text value, int i) {
-        int partition=652;
+        int partition=10;
             if(categoryList.contains(key.toString()))
             {
               partition=categoryList.indexOf(key.toString());
             }
-
         return partition;
     }
 

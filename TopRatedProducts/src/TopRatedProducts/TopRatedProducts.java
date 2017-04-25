@@ -30,8 +30,8 @@ public class TopRatedProducts {
         job.setMapOutputValueClass(Text.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
-        DistributedCache.addCacheFile(new URI(args[2]), job.getConfiguration());
-        job.setNumReduceTasks(11);
+       // DistributedCache.addCacheFile(new URI(args[2]), job.getConfiguration());
+        job.setNumReduceTasks(21);
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         System.exit(job.waitForCompletion(true) ? 0 : 1);

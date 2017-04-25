@@ -16,6 +16,6 @@ public void map(Object key , Text value ,Context context) throws IOException, In
     Gson gson = new Gson();
     JsonReview reviewDetails = gson.fromJson(value.toString(), JsonReview.class);
    /* System.out.println(reviewDetails);*/
-    context.write(new DoubleWritable(Double.parseDouble(reviewDetails.getOverall())), new Text(reviewDetails.getAsin()));
+    context.write(new DoubleWritable(Double.parseDouble(reviewDetails.getOverall())), new Text(value.toString()));
 }
 }

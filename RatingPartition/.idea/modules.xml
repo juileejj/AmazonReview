@@ -3,7 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../DistinctCategory/DistinctCategory.iml" filepath="$PROJECT_DIR$/../DistinctCategory/DistinctCategory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../MetadataSummarization/MetadataSummarization.iml" filepath="$PROJECT_DIR$/../MetadataSummarization/MetadataSummarization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PriceBinning/PriceBinning.iml" filepath="$PROJECT_DIR$/../PriceBinning/PriceBinning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RandomReviewSampling/RandomReviewSampling.iml" filepath="$PROJECT_DIR$/../RandomReviewSampling/RandomReviewSampling.iml" />
       <module fileurl="file://$PROJECT_DIR$/RatingPartition.iml" filepath="$PROJECT_DIR$/RatingPartition.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ReviewPrediction/ReviewPrediction.iml" filepath="$PROJECT_DIR$/../ReviewPrediction/ReviewPrediction.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TopRatedProducts/TopRatedProducts.iml" filepath="$PROJECT_DIR$/../TopRatedProducts/TopRatedProducts.iml" />
     </modules>
   </component>

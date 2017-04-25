@@ -1,6 +1,5 @@
 package category_partition;
 
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.apache.hadoop.conf.Configurable;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.filecache.DistributedCache;
@@ -25,7 +24,7 @@ public class PartitionPartitioner extends Partitioner<Text,Text> implements Conf
 
     @Override
     public int getPartition(Text key, Text value, int i) {
-        int partition=10;
+        int partition=20;
             if(categoryList.contains(key.toString()))
             {
               partition=categoryList.indexOf(key.toString());
@@ -48,9 +47,30 @@ public class PartitionPartitioner extends Partitioner<Text,Text> implements Conf
         return conf;
     }
 
-    private ArrayList<String> getCategoryCache() throws IOException {
+    private void getCategoryCache() throws IOException {
+        categoryList = new ArrayList<>();
+        categoryList.add("Jewelry: International Shipping Available");
+        categoryList.add("Boys");
+        categoryList.add("Watches");
+        categoryList.add("Sandals");
+        categoryList.add("Shirts");
+        categoryList.add("Boots");
+        categoryList.add("T-Shirts");
+        categoryList.add("Dresses");
+        categoryList.add("Tops & Tees");
+        categoryList.add("Girls");
+        categoryList.add("Accessories");
+        categoryList.add("Jewelry");
+        categoryList.add("Shoes & Accessories: International Shipping Available");
+        categoryList.add("Novelty");
+        categoryList.add("Shoes");
+        categoryList.add("Novelty, Costumes & More");
+        categoryList.add("Men");
+        categoryList.add("Clothing");
+        categoryList.add("Women");
+        categoryList.add("Clothing, Shoes & Jewelry");
 
-        try {
+/*        try {
             Path[] files = DistributedCache.getLocalCacheFiles(getConf());
             //System.out.println(files.toString());
             categoryList = new ArrayList<>();
@@ -70,8 +90,7 @@ public class PartitionPartitioner extends Partitioner<Text,Text> implements Conf
             }
         } catch (IOException ex) {
             System.err.println("Exception in mapper setup: " + ex.getMessage());
-        }
-return categoryList;
+        }*/
     }
 
 }

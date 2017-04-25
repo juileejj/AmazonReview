@@ -20,7 +20,7 @@ public class TopTenMapper extends Mapper<Object,Text,NullWritable,Text> {
             String category = valueArray[0];
             String count = valueArray[1];
             recordMap.put(Integer.parseInt(count), new Text(category));
-            if (recordMap.size() > 10) {
+            if (recordMap.size() > 20) {
                 recordMap.remove(recordMap.firstKey());
             }
         }

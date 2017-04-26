@@ -1,7 +1,6 @@
 package writable;
 
 import org.apache.hadoop.io.Writable;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
@@ -10,82 +9,54 @@ import java.io.IOException;
  * Created by hadoop on 4/24/17.
  */
 public class CustomWritable implements Writable {
-    Integer reviewCount;
-    Float averageRating;
-    Float minimumRating;
-    Float maximumRating;
+  private  Integer count;
+  private  Float average;
+  private  Float min;
+  private  Float max;
 
-    public CustomWritable() {
+
+    public Integer getCount() {
+        return count;
     }
 
-    public CustomWritable(Integer reviewCount, Float averageRating) {
-        this.reviewCount = reviewCount;
-        this.averageRating = averageRating;
+    public Float getAverage() {
+        return average;
     }
 
-    public CustomWritable(Integer reviewCount, Float averageRating, Float minimumRating, Float maximumRating) {
-        this.reviewCount = reviewCount;
-        this.averageRating = averageRating;
-        this.minimumRating = minimumRating;
-        this.maximumRating = maximumRating;
+    public Float getMin() {
+        return min;
     }
 
-    public Integer getReviewCount() {
-        return reviewCount;
-    }
-
-    public void setReviewCount(Integer reviewCount) {
-        this.reviewCount = reviewCount;
-    }
-
-    public Float getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(Float averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public Float getMinimumRating() {
-        return minimumRating;
-    }
-
-    public void setMinimumRating(Float minimumRating) {
-        this.minimumRating = minimumRating;
-    }
-
-    public Float getMaximumRating() {
-        return maximumRating;
-    }
-
-    public void setMaximumRating(Float maximumRating) {
-        this.maximumRating = maximumRating;
-    }
-
-    @Override
-    public String toString() {
-        return "ReviewEntity{" +
-                "reviewCount=" + reviewCount +
-                ", averageRating=" + averageRating +
-                ", minimumRating=" + minimumRating +
-                ", maximumRating=" + maximumRating +
-                '}';
+    public Float getMax() {
+        return max;
     }
 
     @Override
     public void write(DataOutput dataOutput) throws IOException {
-        dataOutput.writeInt(reviewCount);
-        dataOutput.writeFloat(averageRating);
-        dataOutput.writeFloat(minimumRating);
-        dataOutput.writeFloat(maximumRating);
+        dataOutput.writeInt(count);
+        dataOutput.writeFloat(average);
+        dataOutput.writeFloat(min);
+        dataOutput.writeFloat(max);
     }
 
     @Override
     public void readFields(DataInput dataInput) throws IOException {
-        reviewCount = dataInput.readInt();
-        averageRating = dataInput.readFloat();
-        minimumRating = dataInput.readFloat();
-        maximumRating = dataInput.readFloat();
+        count = dataInput.readInt();
+        average = dataInput.readFloat();
+        min = dataInput.readFloat();
+        max = dataInput.readFloat();
+    }
+
+    public CustomWritable(Integer count, Float average) {
+        this.count = count;
+        this.average = average;
+    }
+
+    public CustomWritable(Integer count, Float average, Float min, Float max) {
+        this.count = count;
+        this.average = average;
+        this.min = min;
+        this.max = max;
     }
 
 }

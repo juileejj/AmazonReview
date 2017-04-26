@@ -16,42 +16,6 @@ public class JsonReview {
     private String reviewTime;
     private List<String> helpful;
 
-    public String getReviewerId() {
-        return reviewerId;
-    }
-
-    public void setReviewerId(String reviewerId) {
-        this.reviewerId = reviewerId;
-    }
-
-    public String getAsin() {
-        return asin;
-    }
-
-    public void setAsin(String asin) {
-        this.asin = asin;
-    }
-
-    public String getReviewerName() {
-        return reviewerName;
-    }
-
-    public void setReviewerName(String reviewerName) {
-        this.reviewerName = reviewerName;
-    }
-
-    public String getReviewText() {
-        return reviewText;
-    }
-
-    public void setReviewText(String reviewText) {
-        this.reviewText = reviewText;
-    }
-
-    public String getOverall() {
-        return overall;
-    }
-
     public void setOverall(String overall) {
         this.overall = overall;
     }
@@ -86,5 +50,41 @@ public class JsonReview {
 
     public void setHelpful(List<String> helpful) {
         this.helpful = helpful;
+    }
+
+    public String getReviewerId() {
+        return reviewerId;
+    }
+
+    public void setReviewerId(String reviewerId) {
+        this.reviewerId = reviewerId;
+    }
+
+    public String getAsin() {
+        return asin;
+    }
+
+    public void setAsin(String asin) {
+        this.asin = asin;
+    }
+
+    public String getReviewerName() {
+        return reviewerName;
+    }
+
+    public void setReviewerName(String reviewerName) {
+        this.reviewerName = reviewerName;
+    }
+
+    public String getReviewText() {
+        return reviewText;
+    }
+
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
+
+    public String getOverall() {
+        return overall;
     }
 }

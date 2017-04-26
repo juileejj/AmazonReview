@@ -13,17 +13,10 @@ import java.io.IOException;
  * Created by hadoop on 4/24/17.
  */
 public class BinningMapper extends Mapper<Object, Text, Text, NullWritable> {
-    private Gson gson;
-    private MultipleOutputs<Text, NullWritable> multipleOutputs;
-
-    @Override
-    protected void setup(Context context) throws IOException, InterruptedException {
-        multipleOutputs = new MultipleOutputs<>(context);
-    }
-
+    private MultipleOutputs<Text, NullWritable> mo;
     @Override
     protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-        gson = new Gson();
+        Gson gson = new Gson();
         JsonMetadata metadata = gson.fromJson(value.toString(), JsonMetadata.class);
         Double price = 0.00;
         if (metadata.getPrice() != null) {
@@ -31,21 +24,27 @@ public class BinningMapper extends Mapper<Object, Text, Text, NullWritable> {
         }
         if (price > Double.parseDouble("0")) {
             if (price <= Double.parseDouble("6.00")) {
-                multipleOutputs.write("bins", value, NullWritable.get(), "< $6");
+                mo.write("bins", value, NullWritable.get(), "< $6");
             } else if (price <= Double.parseDouble("12.00")) {
-                multipleOutputs.write("bins", value, NullWritable.get(), "< $12");
+                mo.write("bins", value, NullWritable.get(), "< $12");
             } else if (price <= Double.parseDouble("25.00")) {
-                multipleOutputs.write("bins", value, NullWritable.get(), "< $25");
+                mo.write("bins", value, NullWritable.get(), "< $25");
             } else if (price <= Double.parseDouble("50.00")) {
-                multipleOutputs.write("bins", value, NullWritable.get(), "< $50");
+                mo.write("bins", value, NullWritable.get(), "< $50");
             } else {
-                multipleOutputs.write("bins", value, NullWritable.get(), "> $100");
+                mo.write("bins", value, NullWritable.get(), "> $100");
             }
         }
     }
 
     @Override
     protected void cleanup(Context context) throws IOException, InterruptedException {
-        multipleOutputs.close();
+        mo.close();
     }
+
+    @Override
+    protected void setup(Context context) throws IOException, InterruptedException {
+        mo = new MultipleOutputs<>(context);
+    }
+
 }

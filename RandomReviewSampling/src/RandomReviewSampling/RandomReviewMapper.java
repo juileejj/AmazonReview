@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class RandomReviewMapper extends Mapper<LongWritable, Text, NullWritable, Text> {
 
-    private int count = 0;
+    private int randomThreshHold = 0;
 
     @Override
     protected void setup(Context context) throws IOException, InterruptedException {
@@ -21,9 +21,9 @@ public class RandomReviewMapper extends Mapper<LongWritable, Text, NullWritable,
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        count++;
-        if (count < 115) {
-            if (count % 2 == 0) {
+        randomThreshHold++;
+        if (randomThreshHold < 115) {
+            if (randomThreshHold % 2 == 0) {
                 context.write(NullWritable.get(), value);
             }
         }

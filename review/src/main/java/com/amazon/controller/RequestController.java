@@ -30,28 +30,11 @@ public class RequestController {
     @GetMapping("/")
     public String index() {
 
-        //File directory = new File("/Users/ajinkya/Documents/adbms_project/electronics/input/hadoop/pig/");
-//        @NotNull
-//        File[] files = directory.listFiles();
-//
-//        for ( File currentFile : files) {
-//            if (currentFile.isFile()) {
-//                String currentLine;
-//                try (BufferedReader reader = new BufferedReader(new FileReader(directory))) {
-//                    while ((currentLine = reader.readLine()) != null) {
-//                        System.out.println(currentLine);
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-
-            File directory = new File("/home/hadoop/Juilee/Project/AmazonReview/pig_files/pig-category");
+        File directory = new File("/home/hadoop/Juilee/Project/AmazonReview/pig_files/pig-category");
         File[] files = directory.listFiles();
-            Collection<String> asinCollection = new HashSet<>();
-            Jedis jedis = new Jedis("localhost");
-        for ( File currentFile : files) {
+        Collection<String> asinCollection = new HashSet<>();
+        Jedis jedis = new Jedis("localhost");
+        for (File currentFile : files) {
             String currentLine;
             if (currentFile.getName().contains("category")) {
                 List<String> toStoreInRedis = new ArrayList<>();
@@ -73,40 +56,37 @@ public class RequestController {
                 }
             }
         }
-
-            //Now Store asins in data base
-            Gson gson = new Gson();
-            File metadataFile = new File("/home/hadoop/Juilee/Project/metadata");
-            String currentLine;
-            try (BufferedReader metadataFileReader = new BufferedReader(new FileReader(metadataFile))) {
-                while ((currentLine = metadataFileReader.readLine()) != null) {
-                    JsonMeta sampleMetadata = gson.fromJson(currentLine, JsonMeta.class);
-                    if (StringUtils.isNotBlank(sampleMetadata.getAsin())) {
-                        if (asinCollection.contains(sampleMetadata.getAsin()))
-                        {
-                            jedis.set(sampleMetadata.getAsin(), gson.toJson(sampleMetadata));
-                            System.out.println("Added asin to db: " + sampleMetadata.getAsin());
-                        }
+        Gson gson = new Gson();
+        File metadataFile = new File("/home/hadoop/Juilee/Project/metadata");
+        String currentLine;
+        try (BufferedReader metadataFileReader = new BufferedReader(new FileReader(metadataFile))) {
+            while ((currentLine = metadataFileReader.readLine()) != null) {
+                JsonMeta sampleMetadata = gson.fromJson(currentLine, JsonMeta.class);
+                if (StringUtils.isNotBlank(sampleMetadata.getAsin())) {
+                    if (asinCollection.contains(sampleMetadata.getAsin())) {
+                        jedis.set(sampleMetadata.getAsin(), gson.toJson(sampleMetadata));
+                        System.out.println("Add: " + sampleMetadata.getAsin());
                     }
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-            jedis.close();
-        return "Hello from Spring Boot";
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        jedis.close();
+        return "Welcome";
+    }
 
     @CrossOrigin
     @RequestMapping(value = "/search_category", method = RequestMethod.GET)
-    public List<JsonMeta> findTopTenProducts(@RequestParam(name = "searchParam", required = false) String searchParam ) {
+    public List<JsonMeta> findTopTenProducts(@RequestParam(name = "searchParam", required = false) String searchParam) {
         Gson gson = new Gson();
-        if (StringUtils.isNotBlank(searchParam)){
+        if (StringUtils.isNotBlank(searchParam)) {
             List<JsonMeta> results = new ArrayList<>();
             Jedis jedis = new Jedis("localhost");
             String key = "top_10_" + searchParam;
             if (StringUtils.isNotBlank(jedis.get(key))) {
                 String result = jedis.get(key);
-                result = result.replaceAll("\\[","").replaceAll("\\]","");
+                result = result.replaceAll("\\[", "").replaceAll("\\]", "");
                 String[] strArray = result.split(",");
                 for (String s : strArray) {
                     String metadataInString = jedis.get(s.trim());

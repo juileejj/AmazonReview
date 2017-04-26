@@ -22,7 +22,7 @@ public class MetadataSummarization {
     {
         Configuration configuration = new Configuration();
         try {
-            Job job = Job.getInstance(configuration, "Min Max Average Job");
+            Job job = Job.getInstance(configuration, "Average Rating");
             job.setJarByClass(MetadataSummarization.class);
 
             job.setMapperClass(SummarizationMapper.class);

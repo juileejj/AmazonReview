@@ -2,27 +2,19 @@ package MahoutUserBased;
 
 import com.google.gson.Gson;
 import jsonpojo.JsonReview;
-import org.apache.commons.csv.CSVParser;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.common.FastByIDMap;
 import org.apache.mahout.cf.taste.impl.model.GenericDataModel;
 import org.apache.mahout.cf.taste.impl.model.GenericPreference;
 import org.apache.mahout.cf.taste.impl.model.GenericUserPreferenceArray;
 import org.apache.mahout.cf.taste.impl.model.MemoryIDMigrator;
-import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericBooleanPrefItemBasedRecommender;
-import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
 import org.apache.mahout.cf.taste.impl.similarity.LogLikelihoodSimilarity;
-import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.model.Preference;
 import org.apache.mahout.cf.taste.model.PreferenceArray;
-import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.apache.mahout.cf.taste.recommender.Recommender;
-import org.apache.mahout.cf.taste.recommender.UserBasedRecommender;
-import org.apache.mahout.cf.taste.similarity.UserSimilarity;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +26,7 @@ import java.util.Map;
  */
 public class MahoutUserBased {
 
-    static UserBasedRecommender recommender = null;
+    static Recommender recommender = null;
     static  MemoryIDMigrator thing2long = new MemoryIDMigrator();
     static String DATA_FILE_NAME ="/home/hadoop/Juilee/Project/AmazonReview/MahoutUserBased/input/reviews.json";
 
@@ -68,17 +60,12 @@ public class MahoutUserBased {
                 float prefValue = Float.parseFloat(jsonReview.getOverall());
                 userPrefList.add(new GenericPreference(userLong, itemLong, prefValue));
             }
-
-
             FastByIDMap<PreferenceArray> preferecesOfUsersFastMap = new FastByIDMap<PreferenceArray>();
             for(Map.Entry<Long, List<Preference>> entry : preferecesOfUsers.entrySet()) {
                 preferecesOfUsersFastMap.put(entry.getKey(), new GenericUserPreferenceArray(entry.getValue()));
             }
-
             dataModel = new GenericDataModel(preferecesOfUsersFastMap);
-            UserSimilarity similarity = new PearsonCorrelationSimilarity(dataModel);
-            UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.9, similarity, dataModel);
-            recommender = new GenericUserBasedRecommender(dataModel, neighborhood, similarity);
+            recommender = new GenericBooleanPrefItemBasedRecommender(dataModel, new LogLikelihoodSimilarity(dataModel));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -23,7 +23,7 @@ public class PriceBinning {
     {
         Configuration configuration = new Configuration();
         try {
-            Job job = Job.getInstance(configuration, "Price wise binning job");
+            Job job = Job.getInstance(configuration, "Price bins");
             job.setJarByClass(PriceBinning.class);
 
             job.setMapperClass(BinningMapper.class);

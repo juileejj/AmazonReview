@@ -11,18 +11,18 @@ import java.util.List;
 /**
  * Created by hadoop on 4/21/17.
  */
-public class DistinctMapper extends Mapper<Object,Text,Text,LongWritable> {
+public class DistinctMapper extends Mapper<Object, Text, Text, LongWritable> {
     private final LongWritable intWritable = new LongWritable(1);
-public void map(Object key , Text value ,Context context) throws IOException, InterruptedException {
-    Gson gson = new Gson();
-    JsonMetadata metadata = gson.fromJson(value.toString(), JsonMetadata.class);
-    List<List<String>> categories = metadata.getCategories();
-    for(List<String> list:categories)
-    {
-        for(String category:list)
-        {
-            context.write(new Text(category.trim()), intWritable);
-}
-    }
+
+    @Override
+    public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+        Gson gson = new Gson();
+        JsonMetadata metadata = gson.fromJson(value.toString(), JsonMetadata.class);
+        List<List<String>> categories = metadata.getCategories();
+        for (List<String> list : categories) {
+            for (String category : list) {
+                context.write(new Text(category.trim()), intWritable);
             }
+        }
+    }
 }

@@ -23,16 +23,6 @@ public class PartitionPartitioner extends Partitioner<Text,Text> implements Conf
     private ArrayList<String> categoryList=null;
 
     @Override
-    public int getPartition(Text key, Text value, int i) {
-        int partition=20;
-            if(categoryList.contains(key.toString()))
-            {
-              partition=categoryList.indexOf(key.toString());
-            }
-        return partition;
-    }
-
-    @Override
     public void setConf(Configuration conf) {
         this.conf = conf;
         try {
@@ -91,6 +81,16 @@ public class PartitionPartitioner extends Partitioner<Text,Text> implements Conf
         } catch (IOException ex) {
             System.err.println("Exception in mapper setup: " + ex.getMessage());
         }*/
+    }
+
+    @Override
+    public int getPartition(Text key, Text value, int i) {
+        int partition=20;
+        if(categoryList.contains(key.toString()))
+        {
+            partition=categoryList.indexOf(key.toString());
+        }
+        return partition;
     }
 
 }

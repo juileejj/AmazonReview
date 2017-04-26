@@ -23,6 +23,38 @@ public class JsonMetadata {
         categories = new ArrayList<List<String>>();
     }
 
+    public JsonMetadataDetails getRelated() {
+        return related;
+    }
+
+    public void setRelated(JsonMetadataDetails related) {
+        this.related = related;
+    }
+
+    public Map<String, String> getSalesRank() {
+        return salesRank;
+    }
+
+    public void setSalesRank(Map<String, String> salesRank) {
+        this.salesRank = salesRank;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public List<List<String>> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<List<String>> categories) {
+        this.categories = categories;
+    }
+
     public String getAsin() {
         return asin;
     }
@@ -55,35 +87,4 @@ public class JsonMetadata {
         this.imUrl = imUrl;
     }
 
-    public JsonMetadataDetails getRelated() {
-        return related;
-    }
-
-    public void setRelated(JsonMetadataDetails related) {
-        this.related = related;
-    }
-
-    public Map<String, String> getSalesRank() {
-        return salesRank;
-    }
-
-    public void setSalesRank(Map<String, String> salesRank) {
-        this.salesRank = salesRank;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public List<List<String>> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<List<String>> categories) {
-        this.categories = categories;
-    }
 }

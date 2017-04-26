@@ -21,12 +21,17 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="js/controller/searchController.js"></script>
+
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
     <![endif]-->
 
 </head>
@@ -72,14 +77,14 @@
         <!-- /.container -->
     </nav>
 
-    <div class="container">
+    <div class="container" ng-app="MyApp" ng-controller="searchController">
 
         <div class="row">
             <div class="box">
-                <div class="col-lg-12"  ng-app="MyApp" ng-controller="SearchController">
+                <div class="col-lg-12"  >
                     <form class="navbar-form" role="search" ng-submit="search()">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="search" ng-model="search">
+                            <input type="text" class="form-control" placeholder="Search" ng-model="searchParam">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                             </div>
@@ -94,7 +99,9 @@
         <div class="row">
             <div class="box">
                 <ul class="list-group">
-                    <li class="list-group-item"> <img src="img/slide-2.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"></li>
+                    <li class="list-group-item" ng-repeat="x in results">
+                        <img src="{{x.imUrl}}" class="img-thumbnail" width="200" height="200">
+                        {{x.title}}</li>
                 </ul>
                <!-- <div class="col-lg-12">
                     <hr>

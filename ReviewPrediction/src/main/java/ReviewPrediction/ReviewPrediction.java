@@ -5,7 +5,6 @@ import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalL
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.*;
 import jsonpojo.JsonReview;
 import jsonpojo.MySentimental;
-
 import java.io.*;
 
 /**

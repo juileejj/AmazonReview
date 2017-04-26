@@ -5,10 +5,7 @@ import com.google.gson.Gson;
 import com.sun.xml.internal.ws.api.addressing.WSEndpointReference;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.coyote.http2.Stream;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 
 import javax.validation.constraints.NotNull;
@@ -27,6 +24,7 @@ import java.util.List;
 /**
  * Created by hadoop on 4/25/17.
  */
+@RestController
 public class RequestController {
 
     @GetMapping("/")
@@ -78,7 +76,7 @@ public class RequestController {
 
             //Now Store asins in data base
             Gson gson = new Gson();
-            File metadataFile = new File("/Users/ajinkya/Downloads/metadata.json");
+            File metadataFile = new File("/home/hadoop/Juilee/Project/metadata");
             String currentLine;
             try (BufferedReader metadataFileReader = new BufferedReader(new FileReader(metadataFile))) {
                 while ((currentLine = metadataFileReader.readLine()) != null) {
@@ -98,7 +96,7 @@ public class RequestController {
         return "Hello from Spring Boot";
         }
 
-
+    @CrossOrigin
     @RequestMapping(value = "/search_category", method = RequestMethod.GET)
     public List<JsonMeta> findTopTenProducts(@RequestParam(name = "searchParam", required = false) String searchParam ) {
         Gson gson = new Gson();

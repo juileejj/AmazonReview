@@ -2,16 +2,29 @@
  * Created by hadoop on 4/25/17.
  */
 angular.module('MyApp', [])
-    .controller('SearchController', ['$scope', '$http', function ($scope, $http) {
-        $scope.user = {};
+    .controller('searchController', ['$scope', '$http', function ($scope, $http) {
+        $scope.list = {};
         $scope.results = [];
 
         $scope.search = function () {
-            /* the $http service allows you to make arbitrary ajax requests.
-             * in this case you might also consider using angular-resource and setting up a
-             * User $resource. */
-            $http.get('/your/url/search', { params: user },
-                function (response) { $scope.results = response; },
-                function (failure) { console.log("failed :(", failure); });
+         /*   $http.get({
+                'http://localhost:8080/search_category',{searchParam:$scope.cate},
+            }).then(function successCallback(response) {
+                $scope.list = response.data;
+            }, function errorCallback(response) {
+                console.log(response.statusText);
+            });*/
+            $http
+                .get('http://localhost:8080/search_category', {
+                    params: {
+                        searchParam: $scope.searchParam,
+                    }
+                })
+                .success(function (data,status) {
+                    debugger;
+                    $scope.results = data
+                });
+
+
         }
     }]);

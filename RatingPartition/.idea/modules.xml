@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../DistinctCategory/DistinctCategory.iml" filepath="$PROJECT_DIR$/../DistinctCategory/DistinctCategory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../MahoutUserBased/MahoutUserBased.iml" filepath="$PROJECT_DIR$/../MahoutUserBased/MahoutUserBased.iml" />
       <module fileurl="file://$PROJECT_DIR$/../MetadataSummarization/MetadataSummarization.iml" filepath="$PROJECT_DIR$/../MetadataSummarization/MetadataSummarization.iml" />
       <module fileurl="file://$PROJECT_DIR$/../PriceBinning/PriceBinning.iml" filepath="$PROJECT_DIR$/../PriceBinning/PriceBinning.iml" />
       <module fileurl="file://$PROJECT_DIR$/../RandomReviewSampling/RandomReviewSampling.iml" filepath="$PROJECT_DIR$/../RandomReviewSampling/RandomReviewSampling.iml" />

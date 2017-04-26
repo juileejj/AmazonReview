@@ -12,20 +12,20 @@ import java.io.*;
  * Created by hadoop on 4/23/17.
  */
 public class ReviewPrediction {
-    public static File file = new File("/home/hadoop/Juilee/Project/AmazonReview/ReviewPrediction/input/sentiment_output.json");
+    public static File file = new File("/home/hadoop/Juilee/Project/AmazonReview/ReviewPrediction/input/sentiment_out.json");
 
 
     static void parseFile() throws Exception {
 
-        String jsonFile = "/home/hadoop/Juilee/Project/AmazonReview/ReviewPrediction/input/sentiment_input";
+        String jsonFile = "/home/hadoop/Juilee/Project/AmazonReview/ReviewPrediction/input/sentiment_in";
         BufferedReader br = null;
         String line = "";
-        String splitBy = ",";
         Gson gson = new Gson();
 
         try {
             br = new BufferedReader(new FileReader(jsonFile));
             while ((line = br.readLine()) != null) {
+
                 JsonReview jsonReview = gson.fromJson(line.toString(), JsonReview.class);
                getSentimentalResullts(jsonReview.getReviewText());
             }

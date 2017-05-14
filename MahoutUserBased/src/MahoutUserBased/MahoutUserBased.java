@@ -94,8 +94,8 @@ public class MahoutUserBased {
         MahoutUserBased recommendation = new MahoutUserBased();
         recommendation.initRecommender();
         try {
-            for (String result : recommendation.recommendThings("A2XVJBSRI3SWDI")) {
-                System.out.println(result);
+            for (String result : recommendation.recommendThings("A2G0LNLN79Q6HR")) {
+                System.out.println("Recommended Product for user:"+result);
             }
         } catch (TasteException e) {
             e.printStackTrace();

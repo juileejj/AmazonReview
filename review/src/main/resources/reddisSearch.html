@@ -67,9 +67,6 @@
                     <li>
                         <a href="reddisSearch.html">Reddis Search</a>
                     </li>
-                    <li>
-                        <a href="recommend.html">Product Recommendation</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -101,7 +98,8 @@
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="x in results">
                         <img src="{{x.imUrl}}" class="img-thumbnail" width="200" height="200">
-                        {{x.title}}</li>
+                        <h3>{{x.title}}</h3>
+                    </li>
                 </ul>
 
             </div>
